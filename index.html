@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Abdulalem Mareai - عبدالعليم العامري | رحّالة</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Updated Font Awesome to support new icons like Threads -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
@@ -407,6 +408,7 @@
             border: 3px solid #fff;
             display: block;
             margin: 0 auto 15px auto;
+            object-fit: cover;
         }
         .profile-card .card-icon {
             width: 100px;
@@ -429,6 +431,7 @@
             margin: 5px 0;
             color: #f0f0f0;
             flex-grow: 1;
+            font-size: 0.95rem;
         }
         /* START: QR Code Style */
         .profile-card .qr-code {
@@ -482,6 +485,9 @@
         .profile-card.twitter { background-color: #000000; }
         .profile-card.instagram {
             background: radial-gradient(circle at 30% 30%, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+        }
+        .profile-card.threads {
+             background-color: #141414;
         }
         .profile-card.snapchat {
             background-color: #FFFC00;
@@ -623,15 +629,17 @@
             text-decoration: none; /* Ensure link has no underline */
         }
 
-        /* ========== START: SECTION UPDATED ========== */
-        .social-item:nth-child(1) { --color: #FF0000; --angle: 0deg; }    /* YouTube */
-        .social-item:nth-child(2) { --color: #E1306C; --angle: 45deg; }   /* Instagram */
-        .social-item:nth-child(3) { --color: #4267B2; --angle: 90deg; }   /* Facebook */
-        .social-item:nth-child(4) { --color: #000000; --angle: 135deg; }  /* TikTok */
-        .social-item:nth-child(5) { --color: #1DA1F2; --angle: 180deg; }  /* Twitter */
-        .social-item:nth-child(6) { --color: #FFFC00; --angle: 225deg; }  /* Snapchat */
-        .social-item:nth-child(7) { --color: #25D366; --angle: 270deg; }  /* WhatsApp */
-        .social-item:nth-child(8) { --color: #c71610; --angle: 315deg; }  /* Gmail */
+        /* ========== START: SECTION UPDATED FOR 10 ITEMS ========== */
+        .social-item:nth-child(1) { --color: #FF0000; --angle: 0deg; }    /* YouTube Main */
+        .social-item:nth-child(2) { --color: #FF0000; --angle: 36deg; }   /* YouTube Vlogs */
+        .social-item:nth-child(3) { --color: #E1306C; --angle: 72deg; }   /* Instagram */
+        .social-item:nth-child(4) { --color: #000000; --angle: 108deg; }  /* Threads */
+        .social-item:nth-child(5) { --color: #4267B2; --angle: 144deg; }  /* Facebook */
+        .social-item:nth-child(6) { --color: #000000; --angle: 180deg; }  /* TikTok */
+        .social-item:nth-child(7) { --color: #1DA1F2; --angle: 216deg; }  /* Twitter */
+        .social-item:nth-child(8) { --color: #FFFC00; --angle: 252deg; }  /* Snapchat */
+        .social-item:nth-child(9) { --color: #25D366; --angle: 288deg; }  /* WhatsApp */
+        .social-item:nth-child(10){ --color: #c71610; --angle: 324deg; }  /* Gmail */
         /* ========== END: SECTION UPDATED ========== */
 
         .social-item {
@@ -673,9 +681,14 @@
         }
         
         /* Make Snapchat icon black on hover */
-        .social-item:nth-child(6):hover .social-icon {
+        .social-item:nth-child(8):hover .social-icon {
              color: #000;
         }
+        /* Make Threads icon white on hover */
+        .social-item:nth-child(4):hover .social-icon {
+             color: #fff;
+        }
+
 
         .social-item:hover .social-name {
             opacity: 1;
@@ -1054,14 +1067,14 @@
                         </div>
                         <h2>الإجمالي على المنصات</h2>
                         <p>
-                            <strong class="counter" data-target="3505000">0</strong>
+                            <strong class="counter" data-target="3639100">0</strong>
                             متابع ومشترك
                         </p>
                     </div>
                     <!-- YouTube Card -->
                     <div class="profile-card youtube fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="YouTube Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <h2>يوتيوب - القناة الرئيسية</h2>
                         <h2>@aliim714</h2>
                         <p>
                             <strong class="counter" data-target="1470000">0</strong> مشترك<br>
@@ -1070,11 +1083,24 @@
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.youtube.com/@aliim714" alt="YouTube QR Code">
                         <a href="https://www.youtube.com/@aliim714" target="_blank"><i class="fab fa-youtube"></i></a>
                     </div>
+                     <!-- YouTube Vlogs Card -->
+                    <div class="profile-card youtube fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/7t8RfjDD/aliimvlogs.jpg" alt="YouTube Vlogs Profile">
+                        <h2>قناة الفلوقات</h2>
+                        <p>اهلا حبايبي، هنا قناتي الثانية انشر فيها محتوى فلوقات واشياء اكثر من حياتي الشخصية.</p>
+                        <p>
+                            <strong class="counter" data-target="3913656">0</strong> مشاهدة<br>
+                            <strong class="counter" data-target="99200">0</strong> مشترك<br>
+                            <strong class="counter" data-target="70">0</strong> فيديو
+                        </p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.youtube.com/@aliimvlogs" alt="YouTube Vlogs QR Code">
+                        <a href="https://www.youtube.com/@aliimvlogs" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
                     <!-- Facebook -->
                     <div class="profile-card facebook fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Facebook Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
-                        <p> شخص عادي جدا وعندي هواية السفر</p>
+                        <h2>فيسبوك</h2>
+                        <p>"إحسان يتلو احسان حتى اخر لحظة في الحياة" ♥️🙂</p>
                         <p><strong class="counter" data-target="363000">0</strong> متابع</p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.facebook.com/aliim714" alt="Facebook QR Code">
                         <a href="https://www.facebook.com/aliim714" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -1082,7 +1108,7 @@
 					<!-- Twitter X -->
                     <div class="profile-card twitter fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Twitter Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <h2>تويتر (X)</h2>
                         <p>@aliim714</p>
                         <p><strong class="counter" data-target="635000">0</strong> متابع</p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://x.com/aliim714" alt="Twitter QR Code">
@@ -1091,10 +1117,10 @@
                     <!-- TikTok -->
                     <div class="profile-card tiktok fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="TikTok Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
-                        <p>يوتيوبر🧭</p>
+                        <h2>تيك توك</h2>
+                        <p>"إحسان يتلو احسان حتى اخر لحظة في الحياة" ♥️🙂</p>
                         <p>
-                            <strong class="counter" data-target="670000">0</strong> متابع واكثر<br>
+                            <strong class="counter" data-target="670000">0</strong> متابع<br>
                             <strong class="counter" data-target="7500000">0</strong> إعجاب
                         </p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.tiktok.com/@aliim715" alt="TikTok QR Code">
@@ -1103,18 +1129,27 @@
                     <!-- Instagram -->
                     <div class="profile-card instagram fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Instagram Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
-                        <p>يوتيوبر🧭</p>
+                        <h2>انستغرام</h2>
+                        <p>"إحسان يتلو إحسان حتى آخر لحظة في الحياة"</p>
                         <p><strong class="counter" data-target="268000">0</strong> متابع</p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.instagram.com/aliim714" alt="Instagram QR Code">
                         <a href="https://www.instagram.com/aliim714" target="_blank"><i class="fab fa-instagram"></i></a>
                     </div>
+                    <!-- Threads Card -->
+                    <div class="profile-card threads fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Threads Profile">
+                        <h2>ثريدز</h2>
+                        <p>"إحسان يتلو إحسان حتى آخر لحظة في الحياة"</p>
+                        <p><strong class="counter" data-target="34900">0</strong> متابع</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.threads.net/@aliim714" alt="Threads QR Code">
+                        <a href="https://www.threads.net/@aliim714" target="_blank"><i class="fab fa-threads"></i></a>
+                    </div>
                     <!-- Snapchat -->
                     <div class="profile-card snapchat fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Snapchat Profile">
-                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <h2>سناب شات</h2>
+                         <p>"احسان يتلو احسان حتى اخر لحظة في الحياة"</p>
                         <p>@aliim714</p>
-                        <p><strong class="counter" data-target="99000">0</strong> متابع</p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.snapchat.com/add/aliim714" alt="Snapchat QR Code">
                         <a href="https://www.snapchat.com/add/aliim714" target="_blank"><i class="fab fa-snapchat"></i></a>
                     </div>
@@ -1122,7 +1157,7 @@
                     <div class="profile-card support fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Support Profile">
                         <h2>الدعم المادي للقناة</h2>
-                        <p>للدعم المادي للقناة والمساعدة على الاستمرار في تقديم محتوى هادف ومميز.</p>
+                        <p>للمساعدة على الاستمرار في تقديم محتوى هادف ومميز.</p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.paypal.com/paypalme/aliim714" alt="PayPal QR Code">
                         <a href="https://www.paypal.com/paypalme/aliim714" target="_blank">ادعم عبر PayPal<i class="fab fa-paypal"></i></a>
                     </div>
@@ -1130,7 +1165,7 @@
                     <div class="profile-card contact fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Contact Profile">
                         <h2>التواصل واتساب او اتصال</h2>
-                        <p>للدعاية والشراكة في هولندا وخارج هولندا يرجى التواصل مع مدير الأعمال واتس على الرقم التالي: <br><strong style="direction: ltr; display: inline-block; font-size: 1.2rem; letter-spacing: 1px;">0031 685 483 773</strong></p>
+                        <p>للدعاية والشراكة، يرجى التواصل مع مدير الأعمال على الرقم:<br><strong style="direction: ltr; display: inline-block; font-size: 1.2rem; letter-spacing: 1px;">+31 6 85483773</strong></p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/31685483773" alt="WhatsApp QR Code">
                         <div class="contact-buttons">
                             <a href="https://wa.me/31685483773" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
@@ -1140,7 +1175,7 @@
                     <div class="profile-card email fade-in-up">
                         <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Email Profile">
                         <h2>البريد الإلكتروني</h2>
-                        <p>لللإعلان والتواصل يرجى المراسلة على هذا الإيميل (for business and contact): <br><strong>a0liim714@gmail.com</strong></p>
+                        <p>للإعلان والتواصل (for business):<br><strong>a0liim714@gmail.com</strong></p>
                         <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=mailto:a0liim714@gmail.com" alt="Email QR Code">
                         <a href="mailto:a0liim714@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
                     </div>
@@ -1157,9 +1192,17 @@
                         <i class="fab fa-youtube social-icon"></i>
                         <span class="social-name">يوتيوب<br>@aliim714</span>
                     </a>
+                    <a href="https://www.youtube.com/@aliimvlogs" target="_blank" class="social-item">
+                        <i class="fab fa-youtube social-icon"></i>
+                        <span class="social-name">قناة الفلوقات<br>@aliimvlogs</span>
+                    </a>
                     <a href="https://www.instagram.com/aliim714" target="_blank" class="social-item">
                         <i class="fab fa-instagram social-icon"></i>
                         <span class="social-name">انستغرام<br>@aliim714</span>
+                    </a>
+                    <a href="https://www.threads.net/@aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-threads social-icon"></i>
+                        <span class="social-name">ثريدز<br>@aliim714</span>
                     </a>
                     <a href="https://www.facebook.com/aliim714" target="_blank" class="social-item">
                         <i class="fab fa-facebook-f social-icon"></i>
@@ -1179,7 +1222,7 @@
                     </a>
                     <a href="https://wa.me/31685483773" target="_blank" class="social-item">
                         <i class="fab fa-whatsapp social-icon"></i>
-                        <span class="social-name">واتساب<br>0031685483773</span>
+                        <span class="social-name">واتساب<br>+31685483773</span>
                     </a>
                     <a href="mailto:a0liim714@gmail.com" target="_blank" class="social-item">
                         <i class="fas fa-envelope social-icon"></i>
@@ -1209,11 +1252,11 @@
                     <p>في هولندا وخارجها، يرجى التواصل مع مدير الأعمال عبر الوسائل التالية:</p>
                     <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
-                        <a href="https://wa.me/31685483773" target="_blank">واتساب: 0031685483773</a>
+                        <a href="https://wa.me/31685483773" target="_blank">واتساب: +31685483773</a>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
-                        <a href="tel:+31685483773">اتصال: 0031685483773</a>
+                        <a href="tel:+31685483773">اتصال: +31685483773</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -1351,7 +1394,9 @@
             });
         }, { threshold: 0.5 });
         
-        statsObserver.observe(document.querySelector('.journey-stats'));
+        if (document.querySelector('.journey-stats')) {
+            statsObserver.observe(document.querySelector('.journey-stats'));
+        }
 
         // --- Counter for Social Profile Cards ---
         const profilesObserver = new IntersectionObserver((entries, observer) => {
@@ -1366,32 +1411,22 @@
                         let count = 0;
                         const duration = 2000;
                         const step = () => {
-                            const progress = Math.min(1, (Date.now() - startTime) / duration);
-                            let currentCount = Math.floor(progress * target);
-                            
-                            if (target >= 1000000) {
-                                counter.innerText = (currentCount / 1000000).toFixed(2) + 'M';
-                            } else if (target >= 1000) {
-                                counter.innerText = (currentCount / 1000).toFixed(1) + 'K';
-                            } else {
+                            const startTime = Date.now();
+                            const animate = () => {
+                                const progress = Math.min(1, (Date.now() - startTime) / duration);
+                                let currentCount = Math.floor(progress * target);
+                                
                                 counter.innerText = currentCount.toLocaleString();
-                            }
 
-                            if (progress < 1) {
-                                requestAnimationFrame(step);
-                            } else {
-                                if (target >= 1000000) {
-                                    counter.innerText = (target / 1000000).toFixed(2) + 'M';
-                                 } else if (target >= 1000) {
-                                    counter.innerText = (target / 1000).toFixed(1) + 'K';
+                                if (progress < 1) {
+                                    requestAnimationFrame(animate);
                                 } else {
                                     counter.innerText = target.toLocaleString();
                                 }
-                            }
+                            };
+                            requestAnimationFrame(animate);
                         };
-                        
-                        let startTime = Date.now();
-                        requestAnimationFrame(step);
+                        step();
                     });
                 }
             });
