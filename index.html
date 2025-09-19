@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Abdulalem Mareai - عبدالعليم العامري | رحّالة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #ff7e31; /* Vibrant Orange */
+            --secondary: #ff6d00;
+            --accent: #8b5cf6;
+            --dark-bg: #0a192f;
+            --light-bg: #f8f9fa;
+            --card-bg: #112240;
+            --text-light: #ccd6f6;
+            --text-dark: #343a40;
+            --text-muted: #8892b0;
+            --facebook-blue: #1877F2;
+            --font-family: 'Tajawal', sans-serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* New Gradient Background */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* --- Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--card-bg);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar.scrolled {
+            background-color: rgba(17, 34, 64, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            padding: 15px 0;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li { margin-right: 35px; }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        
+        .mobile-menu-btn { display: none; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: url('https://i.ibb.co/35NY4KDV/image.jpg') no-repeat center center/cover;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.6);
+            z-index: 1;
+        }
+        .hero-content {
+            z-index: 2;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        .typing-container {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            height: 40px;
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 35px;
+            background-color: var(--primary);
+            animation: blink 0.7s infinite;
+        }
+        .hero .description {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+            color: var(--text-light);
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 126, 49, 0.4);
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(255, 126, 49, 0.5);
+        }
+
+        /* --- Section Styling & Dividers --- */
+        .section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden; /* Added to contain pseudo-elements */
+        }
+        .section-light {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+        }
+        .section-divider {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .section-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 120px;
+        }
+        .section-divider .shape-fill { fill: #0f172a; } /* Updated to match new dark bg */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            font-family: 'Cairo', sans-serif;
+        }
+        .section-light .section-title { color: var(--dark-bg); }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 5px;
+        }
+        
+        /* --- About Section --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+        .about-text p, .about-text blockquote {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            color: var(--text-dark);
+        }
+        .about-text blockquote {
+            border-right: 4px solid var(--primary);
+            padding-right: 20px;
+            font-style: italic;
+            color: #555;
+        }
+        .highlight { color: var(--primary); font-weight: 700; }
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .about-image:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.3);
+        }
+        .about-image img { width: 100%; display: block; }
+        
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+        }
+        .achievement-card {
+            background: white;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .achievement-card:hover { transform: translateY(-10px); }
+        .achievement-card::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--primary), transparent 30%);
+            animation: achievement-rotate 4s linear infinite; /* Renamed to avoid conflict */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .achievement-card:hover::before { opacity: 1; }
+        .achievement-card-content {
+            position: relative;
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .achievement-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
+        .achievement-title { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-dark); font-weight: 700; }
+        .achievement-desc { font-size: 1rem; line-height: 1.6; }
+
+        /* --- START: Journey Stats Section with Animated Background --- */
+        #journey {
+            padding-bottom: 150px;
+            position: relative;
+            z-index: 1;
+        }
+        #journey::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/93CkM3hr/5.jpg');
+            background-repeat: repeat-x;
+            background-position: center center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: -1;
+            animation: pan-map 90s linear infinite;
+        }
+        .journey-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        .stat-number-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            line-height: 1;
+        }
+        .stat-prefix {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 8px;
+        }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+        /* --- END: Journey Stats Section Styles --- */
+
+
+        /* --- START: Styles for Social Profiles Section --- */
+        .profiles-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 60px; /* Space from section title */
+        }
+        .profile-card {
+            border-radius: 16px;
+            color: #fff;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .profile-card .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: block;
+            margin: 0 auto 15px auto;
+        }
+        .profile-card .card-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+            font-size: 40px;
+        }
+        .profile-card h2 {
+            text-align: center;
+            margin: 10px 0 5px 0;
+            font-size: 1.5rem;
+        }
+        .profile-card p {
+            text-align: center;
+            margin: 5px 0;
+            color: #f0f0f0;
+            flex-grow: 1;
+        }
+        /* START: QR Code Style */
+        .profile-card .qr-code {
+            display: block;
+            margin: 10px auto;
+            border-radius: 8px;
+            background: white;
+            padding: 5px;
+            width: 110px;
+            height: 110px;
+        }
+        /* END: QR Code Style */
+        .profile-card a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .profile-card a:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        /* START: Style for icons in profile cards */
+        .profile-card a i {
+            font-size: 1.2rem; /* Adjusted icon size */
+            line-height: 1;
+            vertical-align: middle;
+            margin-left: 5px; /* Space between text and icon */
+        }
+        /* END: Style for icons in profile cards */
+        .profile-card.total-card {
+             background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+        .profile-card.total-card p {
+            font-size: 1.2rem;
+            align-self: center;
+        }
+        .profile-card.total-card .counter {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .profile-card.youtube { background-color: #FF0000; }
+        .profile-card.tiktok { background-color: #000000; }
+        .profile-card.facebook { background-color: #1877f2; }
+        .profile-card.twitter { background-color: #000000; }
+        .profile-card.instagram {
+            background: radial-gradient(circle at 30% 30%, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+        }
+        .profile-card.snapchat {
+            background-color: #FFFC00;
+            color: #000;
+        }
+        .profile-card.snapchat p,
+        .profile-card.snapchat h2 {
+            color: #000;
+        }
+        .profile-card.snapchat a {
+            background-color: rgba(0,0,0,0.1);
+            color: #000;
+        }
+        .profile-card.snapchat a:hover {
+            background-color: rgba(0,0,0,0.2);
+        }
+        /* START: New Card Styles */
+        .profile-card.support {
+            background: linear-gradient(135deg, #0070ba, #005ea6); /* PayPal Blue */
+        }
+        .profile-card.email { background-color: #6c757d; }
+        .profile-card.email p strong {
+             font-size: 1rem;
+             word-break: break-all;
+        }
+        .profile-card.contact {
+            background: linear-gradient(135deg, #25D366, #34B7F1);
+        }
+        .profile-card.contact a {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+        .profile-card.contact a:hover {
+            background-color: transparent;
+        }
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .contact-buttons a {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .contact-buttons a:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        /* END: New Card Styles */
+        .profile-card strong.counter {
+            font-size: 1.25rem;
+            display: block;
+        }
+        /* --- END: Styles for Social Profiles Section --- */
+
+        /* --- Community Section --- */
+        #community {
+            background: linear-gradient(rgba(10, 25, 47, 0.8), rgba(10, 25, 47, 0.8)), url('https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            background-attachment: fixed;
+            text-align: center;
+        }
+        #community .section-title { color: white; }
+        #community .community-text {
+            max-width: 700px;
+            margin: -20px auto 40px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        .cta-button.facebook-btn {
+            background-color: var(--facebook-blue);
+            box-shadow: 0 4px 20px rgba(24, 119, 242, 0.4);
+        }
+        .cta-button.facebook-btn:hover {
+             box-shadow: 0 8px 30px rgba(24, 119, 242, 0.5);
+        }
+
+        /* --- START: Social Orbit Animation Styles --- */
+        #social {
+            position: relative;
+            z-index: 1;
+        }
+        #social::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background-image: url('https://i.ibb.co/93CkM3hr/5.jpg');
+            background-repeat: repeat-x;
+            background-position: center center;
+            background-size: contain;
+            opacity: 0.05;
+            z-index: -1;
+            animation: pan-map 120s linear infinite reverse; /* Slower and reversed animation */
+        }
+        #social .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .social-orbit {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 40px auto 0;
+            border: 2px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: orbit-rotate 60s infinite linear;
+        }
+
+        .social-item {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+            text-decoration: none; /* Ensure link has no underline */
+        }
+
+        /* ========== START: SECTION UPDATED ========== */
+        .social-item:nth-child(1) { --color: #FF0000; --angle: 0deg; }    /* YouTube */
+        .social-item:nth-child(2) { --color: #E1306C; --angle: 45deg; }   /* Instagram */
+        .social-item:nth-child(3) { --color: #4267B2; --angle: 90deg; }   /* Facebook */
+        .social-item:nth-child(4) { --color: #000000; --angle: 135deg; }  /* TikTok */
+        .social-item:nth-child(5) { --color: #1DA1F2; --angle: 180deg; }  /* Twitter */
+        .social-item:nth-child(6) { --color: #FFFC00; --angle: 225deg; }  /* Snapchat */
+        .social-item:nth-child(7) { --color: #25D366; --angle: 270deg; }  /* WhatsApp */
+        .social-item:nth-child(8) { --color: #c71610; --angle: 315deg; }  /* Gmail */
+        /* ========== END: SECTION UPDATED ========== */
+
+        .social-item {
+            transform: translate(-50%, -50%) rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle)));
+        }
+
+        .social-icon {
+            font-size: 30px;
+            color: white;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .social-name {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            font-family: 'Cairo', sans-serif;
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4px 10px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .social-item:hover {
+            background: var(--color);
+            transform: translate(-50%, -50%) rotate(var(--angle)) translate(250px) rotate(calc(-1 * var(--angle))) scale(1.2);
+            box-shadow: 0 0 30px var(--color);
+            z-index: 10;
+        }
+
+        .social-item:hover .social-icon {
+            transform: rotate(360deg) scale(1.5);
+            color: white;
+        }
+        
+        /* Make Snapchat icon black on hover */
+        .social-item:nth-child(6):hover .social-icon {
+             color: #000;
+        }
+
+        .social-item:hover .social-name {
+            opacity: 1;
+            bottom: -30px;
+        }
+
+        .center-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+            animation: pulse 3s infinite alternate;
+            z-index: 5;
+        }
+        .center-logo i {
+            font-size: 40px;
+            color: white;
+        }
+
+        .floating-particles {
+            position: fixed; /* Changed to fixed to cover viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+        /* --- END: Social Orbit Animation Styles --- */
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--card-bg);
+            padding: 80px 20px 20px;
+            text-align: center;
+        }
+		.custom-icon {
+            margin-right: 10px; /* مساحة بين الأيقونة والنص */
+            color: #ff7e31; /* اختر اللون الذي تريده للأيقونة */
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+            text-align: right;
+        }
+        .footer-col h4 {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Cairo', sans-serif;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        .footer-col p, .footer-col a {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+        .footer-col .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            justify-content: flex-start;
+        }
+        .footer-col .contact-item i {
+            font-size: 1.2rem;
+            color: var(--primary);
+            width: 25px;
+            text-align: center;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .footer-bottom .fan-made {
+            font-style: italic;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        .footer-bottom .fan-made i {
+            color: var(--primary);
+        }
+        .footer-bottom #page-views-container {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .footer-bottom #page-views-container span {
+            color: var(--primary);
+        }
+
+        /* --- Animations --- */
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes achievement-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } } /* Renamed */
+        
+        /* New Animations from Social Orbit */
+        @keyframes orbit-rotate {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            from { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 40px rgba(139, 92, 246, 0.5); }
+            to { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 60px rgba(139, 92, 246, 0.8); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        
+        /* START: Animation for the map background */
+        @keyframes pan-map {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* END: Animation for the map background */
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 300px;
+                height: 100vh;
+                background-color: var(--card-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+            }
+            .nav-links.active { transform: translateX(0); }
+            .nav-links li { margin: 15px 0; } /* Adjusted margin for more links */
+            .mobile-menu-btn {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.8rem;
+                cursor: pointer;
+                z-index: 1001;
+            }
+            .about-content { grid-template-columns: 1fr; }
+            .about-image { order: -1; margin-bottom: 40px; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .typing-container { font-size: 1.5rem; }
+            .section-title { font-size: 2.5rem; }
+
+            /* Social Orbit Responsive */
+            .social-orbit {
+                width: 350px;
+                height: 350px;
+            }
+            .social-item {
+                width: 60px;
+                height: 60px;
+                transform: translate(-50%, -50%) rotate(var(--angle)) translate(175px) rotate(calc(-1 * var(--angle)));
+            }
+            .social-item:hover {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translate(175px) rotate(calc(-1 * var(--angle))) scale(1.2);
+            }
+            .social-icon {
+                font-size: 24px;
+            }
+            .center-logo {
+                width: 80px;
+                height: 80px;
+            }
+            .center-logo i {
+                font-size: 30px;
+            }
+             .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+             }
+             .footer-col h4::after {
+                right: 50%;
+                transform: translateX(50%);
+             }
+             .footer-col .contact-item {
+                justify-content: center;
+             }
+        }
+
+        @media (max-width: 480px) {
+            .social-orbit {
+                width: 280px;
+                height: 280px;
+            }
+            .social-item {
+                width: 50px;
+                height: 50px;
+                transform: translate(-50%, -50%) rotate(var(--angle)) translate(140px) rotate(calc(-1 * var(--angle)));
+            }
+            .social-item:hover {
+                transform: translate(-50%, -50%) rotate(var(--angle)) translate(140px) rotate(calc(-1 * var(--angle))) scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">عبدالعليم العامري</a>
+            <ul class="nav-links">
+                <li><a href="#about">عني</a></li>
+                <li><a href="#journey">رحلتي</a></li>
+                <li><a href="#profiles">التواجد الرقمي</a></li>
+                <li><a href="#social">التواصل</a></li>
+                <li><a href="#contact-info">للدعاية والشراكة والتواصل التجاري</a></li>
+               <!--  <li><a href="#contact-info">التواصل التجاري</a></li> -->
+            </ul>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+    
+    <header class="hero">
+        <div class="hero-content">
+            <h1 id="typewriter"></h1><span class="typing-cursor"></span>
+            <div class="typing-container"> إحسان يتلو إحسان حتى آخر لحظة في الحياة </div>
+           <p class="description">
+بناسافر لنعيد اكتشاف الأمل في الإنسانية. بنكسر الحواجز، وبنقترب من الشعوب، وبنفهم الحقيقة، وبنعرف مين احنا كمان.
+
+قناتي منبر لكل عربي بيفكر بعمق. هانشوف سوا تجارب اجتماعية، تحليل سياسي، وأسئلة من شوارع أوروبا.
+
+هدفي جمع حكمة الشرق وحداثة الغرب، لأن الإحسان يتلو إحسان حتى آخر لحظة.
+
+انضموا لعائلتي المتواضعة (#عائلة_عليم) - أنا واثق إنكم مش هتندموا. ❤️
+            </p>
+            <a href="https://www.youtube.com/@aliim714" target="_blank" class="cta-button">اكتشف المزيد</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="section section-light" id="about">
+            <div class="section-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+            <div class="container">
+                <h2 class="section-title">عن الرحّالة</h2>
+                <div class="about-content">
+                <div class="about-text fade-in-up">
+                    <blockquote>أنا عبدالعليم العامري من اليمن وعايش فى هولندا. بقوم بتجارب اجتماعية وأسئلة street interviews فى أوروبا وبوصل الفكرة بطريقة موضوعية. بتكلم عن الوضع السياسي في الغرب وبحلله للمشاهد العربي، وبحاول دايما أوصل صوت الناس وأخلق حوار بين الثقافات المختلفة، وبحب أفتح مجال للنقاش الهادف ❤️ إحسان يتلو إحسان</blockquote>
+                   <p><span class="highlight">ليس مجرد قناص مشاهدات عادي.</span> عبدالعليم "عليم"، اليمني، صاحب رؤية حوّل فضوله الاجتماعي والسياسي إلى جسر بين الثقافات. يعيش في هولندا، وكل فيديو له هو محاولة جادة لفهم أعمق للإنسان والمجتمع في الغرب.</p>
+                    <p>أسلوبه المميز في تقديم التحليل السياسي والتجارب الاجتماعية جذب آلاف المهتمين بفهم التعقيدات الاجتماعية والسياسية في أوروبا. قناته ليست مجرد محتوى، بل هي دعوة للتفكير والنقاش، تفتح في كل فيديو أفقاً جديداً من الفهم والوعي.</p>
+                    <p><span class="highlight">وانا هكمل رحلتي في العالم🇪🇺</span> وهأنقل لكم أعمق اللقاءات والحوارات من كل البلدان!</p>					
+                </div>
+                    <div class="about-image fade-in-up">
+                        <img src="https://i.ibb.co/yc826sBj/2.jpg" alt="عبدالعليم العامري">
+                    </div>
+                </div>
+                <div class="achievements">
+                    <div class="achievement-card fade-in-up">
+                        <div class="achievement-card-content">
+                            <div class="achievement-icon"><i class="fas fa-users"></i></div>
+                            <h3 class="achievement-title">بصمة رقمية</h3>
+                            <p class="achievement-desc">تأثير واسع في أنحاء الوطن العربي، مع ملايين المتابعين والمشاهدات.</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card fade-in-up">
+                        <div class="achievement-card-content">
+                            <div class="achievement-icon"><i class="fas fa-globe-africa"></i></div>
+                            <h3 class="achievement-title">الهدف العالمي</h3>
+                            <p class="achievement-desc">يسعى لتصوير فيديو من كل دولة في العالم، وقد أنجز أكثر من نصف المهمة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="journey">
+            <div class="container">
+                <h2 class="section-title">إحصائيات الرحلة</h2>
+                <div class="journey-stats">
+                    <div class="stat-item fade-in-up">
+                        <div class="stat-number-wrapper">
+                            <span class="stat-prefix">أكثر من</span>
+                            <span class="stat-number" data-target="1.47">0</span>
+                        </div>
+                        <div class="stat-label">مليون مشترك على اليوتيوب</div>
+                    </div>
+                    <div class="stat-item fade-in-up">
+                        <div class="stat-number-wrapper">
+                             <span class="stat-prefix">أكثر من</span>
+                            <span class="stat-number" data-target="138">0</span>
+                        </div>
+                        <div class="stat-label">مليون مشاهدة على اليوتيوب</div>
+                    </div>
+                    <div class="stat-item fade-in-up">
+                        <div class="stat-number-wrapper">
+                             <span class="stat-prefix">أكثر من</span>
+                            <span class="stat-number" data-target="248">0</span>
+                        </div>
+                        <div class="stat-label">فيديو على اليوتيوب</div>
+                    </div>
+                     <div class="stat-item fade-in-up">
+                        <div class="stat-number-wrapper">
+                             <span class="stat-prefix">أكثر من</span>
+                            <span class="stat-number" data-target="20">0</span>
+                        </div>
+                        <div class="stat-label">دولة</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section section-light" id="profiles">
+            <div class="container">
+                <h2 class="section-title">التواجد الرقمي</h2>
+                <div class="profiles-container">
+                    <!-- Total Followers Card -->
+                    <div class="profile-card total-card fade-in-up">
+                        <div class="card-icon">
+                            <i class="fas fa-hashtag"></i>
+                        </div>
+                        <h2>الإجمالي على المنصات</h2>
+                        <p>
+                            <strong class="counter" data-target="3505000">0</strong>
+                            متابع ومشترك
+                        </p>
+                    </div>
+                    <!-- YouTube Card -->
+                    <div class="profile-card youtube fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="YouTube Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <h2>@aliim714</h2>
+                        <p>
+                            <strong class="counter" data-target="1470000">0</strong> مشترك<br>
+                            <strong>248</strong> فيديو
+                        </p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.youtube.com/@aliim714" alt="YouTube QR Code">
+                        <a href="https://www.youtube.com/@aliim714" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <!-- Facebook -->
+                    <div class="profile-card facebook fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Facebook Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <p> شخص عادي جدا وعندي هواية السفر</p>
+                        <p><strong class="counter" data-target="363000">0</strong> متابع</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.facebook.com/aliim714" alt="Facebook QR Code">
+                        <a href="https://www.facebook.com/aliim714" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+					<!-- Twitter X -->
+                    <div class="profile-card twitter fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Twitter Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <p>@aliim714</p>
+                        <p><strong class="counter" data-target="635000">0</strong> متابع</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://x.com/aliim714" alt="Twitter QR Code">
+                        <a href="https://x.com/aliim714" target="_blank"><i class="fab fa-twitter"></i></a>
+                    </div>
+                    <!-- TikTok -->
+                    <div class="profile-card tiktok fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="TikTok Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <p>يوتيوبر🧭</p>
+                        <p>
+                            <strong class="counter" data-target="670000">0</strong> متابع واكثر<br>
+                            <strong class="counter" data-target="7500000">0</strong> إعجاب
+                        </p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.tiktok.com/@aliim715" alt="TikTok QR Code">
+                        <a href="https://www.tiktok.com/@aliim715" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                    <!-- Instagram -->
+                    <div class="profile-card instagram fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Instagram Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <p>يوتيوبر🧭</p>
+                        <p><strong class="counter" data-target="268000">0</strong> متابع</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.instagram.com/aliim714" alt="Instagram QR Code">
+                        <a href="https://www.instagram.com/aliim714" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <!-- Snapchat -->
+                    <div class="profile-card snapchat fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Snapchat Profile">
+                        <h2>Abdulalem Mareai - عبدالعليم العامري</h2>
+                        <p>@aliim714</p>
+                        <p><strong class="counter" data-target="99000">0</strong> متابع</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.snapchat.com/add/aliim714" alt="Snapchat QR Code">
+                        <a href="https://www.snapchat.com/add/aliim714" target="_blank"><i class="fab fa-snapchat"></i></a>
+                    </div>
+                    <!-- Support Card -->
+                    <div class="profile-card support fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Support Profile">
+                        <h2>الدعم المادي للقناة</h2>
+                        <p>للدعم المادي للقناة والمساعدة على الاستمرار في تقديم محتوى هادف ومميز.</p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://www.paypal.com/paypalme/aliim714" alt="PayPal QR Code">
+                        <a href="https://www.paypal.com/paypalme/aliim714" target="_blank">ادعم عبر PayPal<i class="fab fa-paypal"></i></a>
+                    </div>
+                    <!-- Contact Card -->
+                    <div class="profile-card contact fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Contact Profile">
+                        <h2>التواصل واتساب او اتصال</h2>
+                        <p>للدعاية والشراكة في هولندا وخارج هولندا يرجى التواصل مع مدير الأعمال واتس على الرقم التالي: <br><strong style="direction: ltr; display: inline-block; font-size: 1.2rem; letter-spacing: 1px;">0031 685 483 773</strong></p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/31685483773" alt="WhatsApp QR Code">
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/31685483773" target="_blank"><i class="fab fa-whatsapp"></i> واتساب</a>
+                            <a href="tel:+31685483773" target="_blank"><i class="fas fa-phone"></i> اتصال</a>
+                        </div>
+                    </div>
+                    <div class="profile-card email fade-in-up">
+                        <img class="avatar" src="https://i.ibb.co/sp72NPgd/4.jpg" alt="Email Profile">
+                        <h2>البريد الإلكتروني</h2>
+                        <p>لللإعلان والتواصل يرجى المراسلة على هذا الإيميل (for business and contact): <br><strong>a0liim714@gmail.com</strong></p>
+                        <img class="qr-code" src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=mailto:a0liim714@gmail.com" alt="Email QR Code">
+                        <a href="mailto:a0liim714@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- START: New Animated Social Section -->
+        <section class="section" id="social">
+            <div class="container">
+                <h2 class="section-title">تابع المغامرة</h2>
+                <div class="social-orbit">
+                    <a href="https://www.youtube.com/@aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-youtube social-icon"></i>
+                        <span class="social-name">يوتيوب<br>@aliim714</span>
+                    </a>
+                    <a href="https://www.instagram.com/aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-name">انستغرام<br>@aliim714</span>
+                    </a>
+                    <a href="https://www.facebook.com/aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-facebook-f social-icon"></i>
+                        <span class="social-name">فيسبوك<br>@aliim714</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@aliim715" target="_blank" class="social-item">
+                        <i class="fab fa-tiktok social-icon"></i>
+                        <span class="social-name">تيك توك<br>@aliim715</span>
+                    </a>
+                    <a href="https://x.com/aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-twitter social-icon"></i>
+                        <span class="social-name">تويتر<br>@aliim714</span>
+                    </a>
+                    <a href="https://www.snapchat.com/add/aliim714" target="_blank" class="social-item">
+                        <i class="fab fa-snapchat social-icon"></i>
+                        <span class="social-name">سناب شات<br>@aliim714</span>
+                    </a>
+                    <a href="https://wa.me/31685483773" target="_blank" class="social-item">
+                        <i class="fab fa-whatsapp social-icon"></i>
+                        <span class="social-name">واتساب<br>0031685483773</span>
+                    </a>
+                    <a href="mailto:a0liim714@gmail.com" target="_blank" class="social-item">
+                        <i class="fas fa-envelope social-icon"></i>
+                        <span class="social-name">ايميل<br>a0liim714@gmail.com</span>
+                    </a>
+                    <div class="center-logo">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END: New Animated Social Section -->
+    </main>
+
+    <footer id="contact-info">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>عبدالعليم العامري</h4>
+<p><i class="fas fa-suitcase-rolling custom-icon"></i> رحّالة وصانع محتوى، يبني جسورًا بين الثقافات عبر تجارب اجتماعية وتحليلات موضوعية في أوروبا والعالم</p> <!-- أيقونة الرحالة -->
+                <p><i class="fas fa-flag custom-icon"></i> يمني </p> <!-- أيقونة الجنسية -->
+                <p><i class="fas fa-home custom-icon"></i> عايش بهولندا </p> <!-- أيقونة الإقامة -->
+                <p><i class="fas fa-calendar-alt custom-icon"></i> تاريخ الانضمام لليوتيوب : 23‏/04‏/2014 </p> <!-- أيقونة التاريخ -->
+                </div>
+                <div class="footer-col">
+                    <h4>للدعاية والشراكة</h4>
+                    <p>في هولندا وخارجها، يرجى التواصل مع مدير الأعمال عبر الوسائل التالية:</p>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <a href="https://wa.me/31685483773" target="_blank">واتساب: 0031685483773</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:+31685483773">اتصال: 0031685483773</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>التواصل التجاري</h4>
+                    <p>للاستفسارات التجارية العامة والمراسلات، يمكنكم استخدام البريد الإلكتروني:</p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:a0liim714@gmail.com">a0liim714@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="fan-made">
+                    <i class="fas fa-heart"></i> صُنع بكل فخر وحب من متابع معجب بمغامرات عبدالعليم العامري <i class="fas fa-globe-americas"></i>
+                </p>
+                <p>© 2025 | هذه الصفحة مقدمة من المعجبين ومحبي المحتوى.</p>
+                 <p id="page-views-container">عدد زياراتك لهذه الصفحة: <span id="page-views">1</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="floating-particles" id="particles"></div>
+
+    <script>
+        // --- Preloader ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+        });
+        
+        // --- Page View Counter Script ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewsElement = document.getElementById('page-views');
+            if (viewsElement) {
+                let viewCount = localStorage.getItem('abdulalemMareaiPageViewCount'); // Changed key to be specific
+
+                if (viewCount) {
+                    viewCount = Number(viewCount) + 1;
+                } else {
+                    viewCount = 1;
+                }
+
+                localStorage.setItem('abdulalemMareaiPageViewCount', viewCount);
+                viewsElement.textContent = viewCount.toLocaleString();
+            }
+        });
+
+        // --- Navbar Scroll Effect ---
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                    mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // --- Typewriter Effect ---
+        const typewriterElement = document.getElementById('typewriter');
+        const textToType = "Abdulalem Mareai - عبدالعليم العامري";
+        let index = 0;
+        function type() {
+            if (index < textToType.length) {
+                typewriterElement.innerHTML += textToType.charAt(index);
+                index++;
+                setTimeout(type, 150);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', type);
+
+        // --- Intersection Observer for Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- Counter Animation ---
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        const target = +counter.getAttribute('data-target');
+                        const duration = 2000;
+                        const frameRate = 60;
+                        const totalFrames = Math.round((duration / 1000) * frameRate);
+                        const increment = target / totalFrames;
+                        let current = 0;
+
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                clearInterval(timer);
+                                current = target;
+                            }
+                            
+                            if (target % 1 !== 0) {
+                                counter.innerText = current.toFixed(2);
+                            } else {
+                                counter.innerText = Math.floor(current).toLocaleString();
+                            }
+                        }, duration / totalFrames);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        statsObserver.observe(document.querySelector('.journey-stats'));
+
+        // --- Counter for Social Profile Cards ---
+        const profilesObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        if (counter.classList.contains('animated')) return;
+                        counter.classList.add('animated');
+
+                        const target = +counter.getAttribute('data-target');
+                        let count = 0;
+                        const duration = 2000;
+                        const step = () => {
+                            const progress = Math.min(1, (Date.now() - startTime) / duration);
+                            let currentCount = Math.floor(progress * target);
+                            
+                            if (target >= 1000000) {
+                                counter.innerText = (currentCount / 1000000).toFixed(2) + 'M';
+                            } else if (target >= 1000) {
+                                counter.innerText = (currentCount / 1000).toFixed(1) + 'K';
+                            } else {
+                                counter.innerText = currentCount.toLocaleString();
+                            }
+
+                            if (progress < 1) {
+                                requestAnimationFrame(step);
+                            } else {
+                                if (target >= 1000000) {
+                                    counter.innerText = (target / 1000000).toFixed(2) + 'M';
+                                 } else if (target >= 1000) {
+                                    counter.innerText = (target / 1000).toFixed(1) + 'K';
+                                } else {
+                                    counter.innerText = target.toLocaleString();
+                                }
+                            }
+                        };
+                        
+                        let startTime = Date.now();
+                        requestAnimationFrame(step);
+                    });
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        if (document.querySelector('.profiles-container')) {
+            profilesObserver.observe(document.querySelector('.profiles-container'));
+        }
+
+        // --- Scripts for Social Orbit ---
+        const particlesContainer = document.getElementById('particles');
+        if (particlesContainer) {
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                const size = Math.random() * 4 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        document.querySelectorAll('.social-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const centerLogo = document.querySelector('.center-logo');
+                if(centerLogo) {
+                    centerLogo.style.animation = 'none';
+                    setTimeout(() => {
+                        centerLogo.style.animation = 'pulse 3s infinite alternate';
+                    }, 10);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
